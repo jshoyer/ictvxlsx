@@ -3,11 +3,7 @@ My goal here
 is to make it a little bit easier
 to use tables
 from the ICTV
-(the International Committee on the Taxonomy of Viruses)
-in R,
-either directly
-or via dedicated R packages,
-tracked on branches.
+via a dedicated R package.
 
 ```{r, warning=FALSE}
 library(readxl)
