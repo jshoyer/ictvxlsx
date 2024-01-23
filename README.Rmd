@@ -9,6 +9,28 @@ either directly
 or via dedicated R packages,
 tracked on branches.
 
+Depending on your goal,
+you might not need to use R at all.
+If you want to quickly browse the taxonomic hierarchy
+from the top down,
+the ICTV site
+includes a nice [visual browser](https://ictv.global/taxonomy/visual-browser)
+for current and past versions.
+Another interactive view
+that is cross-referenced by annotated host distribution
+is at https://www.ncbi.nlm.nih.gov/labs/virus
+(NCBI = US National Center for Biotechnology Information).
+The NCBI Taxonomy database
+provides a text-based hierarchical browser
+that can be used to access many types of data
+for each taxon.
+As noted by Siddell et al. ([2023](https://doi.org/10.1099/jgv.0.001840))
+in a paper on the role of the ICTV,
+the NCBI Taxonomy team
+uses ICTV releases
+but there is a short lag each time,
+so it can be worthwhile to cross-reference the ICTV tables.
+
 ## History of the taxonomy
 Others have considered using one or more R packages
 to access the full history of the taxonomy,
