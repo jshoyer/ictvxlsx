@@ -8,3 +8,11 @@ in R,
 either directly
 or via dedicated R packages,
 tracked on branches.
+
+## History of the taxonomy
+Others have considered using one or more R packages
+to access the full history of the taxonomy,
+including taxon merging, splitting, reassignment-moves, and renaming
+(taxa package [issue 136](https://github.com/ropensci/taxa/issues/136)
+ and linked taxize issue 695).
+ 
