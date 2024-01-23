@@ -88,6 +88,27 @@ msl2022_e <- left_join(msl2022, vmr2022_e,
                               "Genome.Composition" = "Genome.composition"))
 ```
 
+It is often convenient
+to add NCBI taxon IDs to (subsets of) this data frame.
+The best way I have found to do this so far
+is to navigate the taxonomy database
+and/or query it with a URL like so
+https://www.ncbi.nlm.nih.gov/taxonomy/?term=txid10239[Subtree]
+(possibly replacing 10239,
+ the taxonomy ID covering all viruses,
+ with a more specific ID).
+By clicking on ‘Send to’
+one can export both a Taxon name file
+and a Taxid list file.
+Reading these files into R,
+cbinding them into a data frame,
+and then joining that data frame
+to the one above
+by species names
+(or genus names,
+ or the names for any other rank of interest)
+is straightforward.
+
 ## History of the taxonomy
 Others have considered using one or more R packages
 to access the full history of the taxonomy,
