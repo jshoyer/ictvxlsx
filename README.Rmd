@@ -1,15 +1,18 @@
 
 My goal here
-is to make it a little bit easier
-to use tables
+is to use historical tables
 from the ICTV
-(the International Committee on the Taxonomy of Viruses)
-in R,
 via a dedicated R package.
 Historical Excel files
 can be downloaded in bulk
 from https://ictv.global/msl
-and https://ictv.global/vmr.
+(check the box at the top
+ to select all versions.)
+Move downloaded versions of the MSL
+to inst/doc/
+and remove the minor-update versions
+with the shell script in that directory
+to get a 1-per-year set.
 
 ## Possible more-refined approaches to the history of the taxonomy
 Others have considered using one or more R packages
