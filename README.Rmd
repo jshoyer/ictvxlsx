@@ -5,11 +5,13 @@ to use tables
 from the ICTV
 (the International Committee on the Taxonomy of Viruses)
 in R,
-either directly
-or via dedicated R packages,
-tracked on branches.
+via a dedicated R package.
+Historical Excel files
+can be downloaded in bulk
+from https://ictv.global/msl
+and https://ictv.global/vmr.
 
-## History of the taxonomy
+## Possible more-refined approaches to the history of the taxonomy
 Others have considered using one or more R packages
 to access the full history of the taxonomy,
 including taxon merging, splitting, reassignment-moves, and renaming
