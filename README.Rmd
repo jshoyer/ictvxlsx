@@ -8,3 +8,27 @@ in R,
 either directly
 or via dedicated R packages,
 tracked on branches.
+
+```{r, warning=FALSE}
+library(readxl)
+library(dplyr)
+
+msl2022 <-
+  read_excel("ICTV_Master_Species_List_2022_MSL38.v3.xlsx",
+             sheet = 2, .name_repair = "universal")
+
+vmr2022 <-
+  read_excel("VMR_MSL38_v2.xlsx",
+             sheet = 1, .name_repair = "universal")
+
+vmr2022_e <- filter(vmr2022,
+                    Exemplar.or.additional.isolate == "E") %>%
+  select(-Exemplar.or.additional.isolate)
+
+msl2022_e <- left_join(msl2022, vmr2022_e,
+                       by = c("Realm", "Subrealm", "Kingdom", "Subkingdom",
+                              "Phylum", "Subphylum", "Class", "Subclass",
+                              "Order", "Suborder", "Family", "Subfamily",
+                              "Genus", "Subgenus", "Species",
+                              "Genome.Composition" = "Genome.composition"))
+```
