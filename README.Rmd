@@ -31,17 +31,50 @@ uses ICTV releases
 but there is a short lag each time,
 so it can be worthwhile to cross-reference the ICTV tables.
 
+The main product that the ICTV distributes
+is an Excel file “species list” table
+(the MSL).
+Let's say that you have downloaded
+the current Excel table
+from ictv.global/msl
+(download shortcut https://ictv.global/msl/current)
+and put it in your current working directory.
 ```{r, warning=FALSE}
 library(readxl)
-library(dplyr)
 
 msl2022 <-
   read_excel("ICTV_Master_Species_List_2022_MSL38.v3.xlsx",
              sheet = 2, .name_repair = "universal")
+```
+
+The ICTV distributes a second table,
+the metadata resource
+(ictv.global/vmr, 
+ shortcut https://ictv.global/vmr/current).
+This table includes
+recommended common names
+and abbreviations,
+which are distinct from formal taxonomic names.
+It also list an exemplar sequence
+(GenBank accession numbers)
+for each species
+and in some cases one or more additional (A) sequence rows.
+```{r, warning=FALSE}
+library(dplyr)
 
 vmr2022 <-
   read_excel("VMR_MSL38_v2.xlsx",
              sheet = 1, .name_repair = "universal")
+```
+
+Much higher-rank information
+is duplicated
+in the MSL and VMR,
+so I like to combine the tables.
+In effect
+this adds the exemplar sequence (e) information to the MSL.
+```{r}
+library(dplyr)
 
 vmr2022_e <- filter(vmr2022,
                     Exemplar.or.additional.isolate == "E") %>%
