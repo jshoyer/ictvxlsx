@@ -5,16 +5,18 @@ to use tables
 from the ICTV
 via a dedicated R package.
 
-```{r, warning=FALSE}
+```{r}
 library(readxl)
 library(dplyr)
 
 msl2022 <-
   read_excel("ICTV_Master_Species_List_2022_MSL38.v3.xlsx",
+             col_types = "text",
              sheet = 2, .name_repair = "universal")
 
 vmr2022 <-
   read_excel("VMR_MSL38_v2.xlsx",
+             col_types = "text",
              sheet = 1, .name_repair = "universal")
 
 vmr2022_e <- filter(vmr2022,
