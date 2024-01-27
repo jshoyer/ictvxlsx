@@ -6,6 +6,15 @@ uses ICTV releases
 but there is a short lag each time,
 so it can be worthwhile to cross-reference the ICTV tables.
 
+It might be useful
+to read in Excel tables
+from selected pending taxonomy proposals,
+given the lag before the major annual release.
+Might it be useful
+to programmatically cross-reference
+such tables
+against the NCBI Taxonomy?
+
 ## History of the taxonomy
 Others have considered using one or more R packages
 to access the full history of the taxonomy,
