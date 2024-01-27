@@ -26,4 +26,14 @@ to access the full history of the taxonomy,
 including taxon merging, splitting, reassignment-moves, and renaming
 (taxa package [issue 136](https://github.com/ropensci/taxa/issues/136)
  and linked taxize issue 695).
- 
+
+I am not eager to try to use the internal site API
+(if it still exists at all).
+
+I do not anticipate
+using any of the other databases
+that `taxize` supports,
+beyond possibly checking how consistent and up-to-date they are.
+```{r}
+begomo_ids_multi <- get_ids("Begomovirus")
+```
