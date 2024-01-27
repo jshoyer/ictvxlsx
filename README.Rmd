@@ -46,4 +46,14 @@ as.data.frame(with(monodna, table(abbrev))) %>%
     filter(Freq > 1) %>%
     left_join(vmr2022_e_slim) %>%
     select(abbrev, name, Species, Genus)
+
+## Bottom up: ######################################################################
+filter(vmr2022_e_slim2, abbrev == "AYVV") ## not quite, because
+
+## many abbreviations have an extra identifier tacked on
+filter(vmr2022_e_slim,
+       Genus == "Begomovirus",
+       ##Family == "Geminiviridae",
+       grepl("/", abbrev)) %>%
+    select(name, abbrev, isolate)
 ```
