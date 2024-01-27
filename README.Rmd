@@ -24,6 +24,10 @@ years <-
             26, 29)
 msl_files <- dir("inst/extdata", pattern = "xls", full.names = TRUE)
 
+## Defer MSL numbers.  Could add MSL 33 (2018a) back.
+## See https://ictv.global/taxonomy/history
+#msl_nums <- c(23:32, 34:38)
+
 num_msl <- length(msl_files)
 ictv_msl_list <- vector("list", num_msl)
 #' excel_sheets(msl_files[num_msl])
