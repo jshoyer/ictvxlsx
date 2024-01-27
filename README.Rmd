@@ -1,15 +1,17 @@
 
 My goal here
 is to use historical tables
-from the ICTV
-via a dedicated R package.
+from the ICTV,
+eventually via a dedicated R package,
+and maybe even using lazyloading of R-data objects.
+
 Historical Excel files
 can be downloaded in bulk
 from https://ictv.global/msl
 (check the box at the top
  to select all versions.)
 Move downloaded versions of the MSL
-to inst/doc/
+to inst/extdata/
 and remove the minor-update versions
 with the shell script in that directory
 to get a 1-per-year set.
