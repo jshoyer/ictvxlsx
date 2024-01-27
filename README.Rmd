@@ -23,10 +23,18 @@ vmr2022_e <- filter(vmr2022,
                     Exemplar.or.additional.isolate == "E") %>%
   select(-Exemplar.or.additional.isolate)
 
-msl2022_e <- left_join(msl2022, vmr2022_e,
-                       by = c("Realm", "Subrealm", "Kingdom", "Subkingdom",
-                              "Phylum", "Subphylum", "Class", "Subclass",
-                              "Order", "Suborder", "Family", "Subfamily",
-                              "Genus", "Subgenus", "Species",
-                              "Genome.Composition" = "Genome.composition"))
+vmr2022_e_slim <- transmute(vmr2022_e,
+                            Family, Genus, Species,
+                            name = Virus.name.s.,
+                            abbrev = Virus.name.abbreviation.s.,
+                            isolate = Virus.isolate.designation,
+                            genbank = Virus.GENBANK.accession,
+                            refseq = Virus.REFSEQ.accession)
+## Genome.coverage, Genome.composition, Host.source
+
+vmr2022_e_slim2 <- select(vmr2022_e_slim,
+                          -Family, -Genus)
+
+msl2022_e <- left_join(msl2022, vmr2022_e_slim2,
+                       by = "Species")
 ```
