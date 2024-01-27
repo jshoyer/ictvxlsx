@@ -6,6 +6,11 @@ uses ICTV releases
 but there is a short lag each time,
 so it can be worthwhile to cross-reference the ICTV tables.
 
+```{r}
+library(taxize)
+cablcv_id <- get_ids("Cabbage leaf curl virus", db = "ncbi")
+```
+
 It might be useful
 to read in Excel tables
 from selected pending taxonomy proposals,
