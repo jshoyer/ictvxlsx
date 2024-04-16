@@ -56,4 +56,35 @@ filter(vmr2022_e_slim,
        ##Family == "Geminiviridae",
        grepl("/", abbrev)) |>
     select(name, abbrev, isolate)
+
+filter(vmr2022_e_slim,
+       grepl("Hualian", name)) |>
+    select(name, abbrev, isolate)
+
+## One-letter abbreviation used, not two-letter abbreviation
+filter(vmr2022_e_slim,
+       grepl("Japan", name)) |>
+    select(name, abbrev, isolate)
+filter(vmr2022_e_slim,
+       grepl("JP", abbrev)) |>
+    select(name, abbrev, isolate)
+
+######################################################################
+
+filter(vmr2022_e, Genus == "Umbravirus") |>
+    select(Species, Virus.name.abbreviation.s.)
+## Subfamily Calvusvirinae
+## Same:
+filter(vmr2022_e, Subfamily == "Calvusvirinae") |>
+    select(Genus, Subgenus, Species, Virus.name.abbreviation.s.)
+
+write.csv(
+filter(vmr2022_e, Family == "Tombusviridae") |>
+    select(Subfamily, Genus, Subgenus, Species,
+           Virus.name.s.,
+           Virus.name.abbreviation.s.)
+, "tombusviridae_2022.csv")
+
+filter(vmr2022_e, Virus.name.abbreviation.s. == "WMV") |>
+    select(Species, Host.source, Genome.composition)
 ```
