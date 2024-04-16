@@ -20,7 +20,7 @@ vmr2022 <-
              sheet = 1, .name_repair = "universal")
 
 vmr2022_e <- filter(vmr2022,
-                    Exemplar.or.additional.isolate == "E") %>%
+                    Exemplar.or.additional.isolate == "E") |>
   select(-Exemplar.or.additional.isolate)
 
 vmr2022_e_slim <- transmute(vmr2022_e,
@@ -39,12 +39,12 @@ msl2022_e <- left_join(msl2022, vmr2022_e_slim2,
                        by = "Species")
 
 ## Top down: ######################################################################
-monodna <- filter(msl2022_e, Realm == "Monodnaviria") %>%
+monodna <- filter(msl2022_e, Realm == "Monodnaviria") |>
     select(-Realm, -Subrealm)
 
-as.data.frame(with(monodna, table(abbrev))) %>%
-    filter(Freq > 1) %>%
-    left_join(vmr2022_e_slim) %>%
+as.data.frame(with(monodna, table(abbrev))) |>
+    filter(Freq > 1) |>
+    left_join(vmr2022_e_slim) |>
     select(abbrev, name, Species, Genus)
 
 ## Bottom up: ######################################################################
@@ -54,6 +54,6 @@ filter(vmr2022_e_slim2, abbrev == "AYVV") ## not quite, because
 filter(vmr2022_e_slim,
        Genus == "Begomovirus",
        ##Family == "Geminiviridae",
-       grepl("/", abbrev)) %>%
+       grepl("/", abbrev)) |>
     select(name, abbrev, isolate)
 ```
