@@ -9,8 +9,8 @@ via a dedicated R package.
 library(readxl)
 library(dplyr)
 
-msl2022 <-
-  read_excel("ICTV_Master_Species_List_2022_MSL38.v3.xlsx",
+msl2023 <-
+  read_excel("ICTV_Master_Species_List_2023_MSL39.v1.xlsx",
              col_types = "text",
              sheet = 2, .name_repair = "universal")
 
@@ -39,7 +39,7 @@ msl2022_e <- left_join(msl2022, vmr2022_e_slim2,
                        by = "Species")
 
 ## Top down: ######################################################################
-monodna <- filter(msl2022_e, Realm == "Monodnaviria") |>
+monodna <- filter(msl2023, Realm == "Monodnaviria") |>
     select(-Realm, -Subrealm)
 
 as.data.frame(with(monodna, table(abbrev))) |>
