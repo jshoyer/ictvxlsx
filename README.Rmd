@@ -12,10 +12,14 @@ msl2023 <-
 monodna <- filter(msl2023, Realm == "Monodnaviria") |>
     select(-Realm, -Subrealm)
 
-gemini <- filter(monodna, Family == "Geminiviridae") |>
+gemini <- filter(msl2023, Family %in% c("Geminiviridae",
+                                        "Alphasatellitidae",
+                                        "Tolecusatellitidae")) |>
     select(-Kingdom, -Subkingdom, -Phylum, -Subphylum,
            -Class,   -Subclass,   -Order,  -Suborder,
-           -Family)
+           -Realm, -Subrealm)
+
+with(gemini, table(Family, useNA = "always"))
 
 with(gemini, table(Subfamily, useNA = "always"))
 with(gemini, table(Subgenus, useNA = "always"))
@@ -24,7 +28,7 @@ with(gemini, table(Last.Change, useNA = "always"))
 
 #' Inconsistent:
 with(gemini, table(Genome.Composition, useNA = "always"))
-with(gemini, table(Genome.Composition, Genus, useNA = "always"))
+with(gemini, table(Genome.Composition, Genus, useNA = "ifany"))
 
 with(gemini, table(Genus, useNA = "always"))
 
