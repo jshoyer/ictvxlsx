@@ -4,10 +4,7 @@ is to make it a little bit easier
 to use tables
 from the ICTV
 (the International Committee on the Taxonomy of Viruses)
-in R,
-either directly
-or via dedicated R packages,
-tracked on branches.
+in R.
 
 Depending on your goal,
 you might not need to use R at all.
@@ -118,4 +115,14 @@ to access the full history of the taxonomy,
 including taxon merging, splitting, reassignment-moves, and renaming
 (taxa package [issue 136](https://github.com/ropensci/taxa/issues/136)
  and linked taxize issue 695).
- 
+
+If one wants to access the taxonomy
+from any directory,
+it can be worthwhile
+to wrap it in a package,
+storing either the Excel files themselves
+or R objects derived from them.
+I am exploring this idea
+on branches in this repository.
+Feel free to file an issue
+if this is of interest.
