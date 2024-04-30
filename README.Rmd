@@ -1,0 +1,8 @@
+
+library(readxl)
+library(dplyr)
+
+msl2023 <-
+  read_excel("ICTV_Master_Species_List_2023_MSL39.v1.xlsx",
+             col_types = "text",
+             sheet = 2, .name_repair = "universal")
