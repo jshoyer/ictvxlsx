@@ -73,6 +73,14 @@ in the MSL and VMR,
 so I like to combine the tables.
 In effect
 this adds the exemplar sequence (e) information to the MSL.
+(If you never expect to use the
+revision history
+in the MSL,
+you might find it simpler
+to just use VMR alone.)
+
+Get the exemplar rows
+and join tables like so:
 ```{r}
 library(dplyr)
 
