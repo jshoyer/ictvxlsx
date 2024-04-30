@@ -6,3 +6,16 @@ msl2023 <-
   read_excel("ICTV_Master_Species_List_2023_MSL39.v1.xlsx",
              col_types = "text",
              sheet = 2, .name_repair = "universal")
+
+
+## Top down: ######################################################################
+monodna <- filter(msl2023, Realm == "Monodnaviria") |>
+    select(-Realm, -Subrealm)
+
+gemini <- filter(monodna, Family == "Geminiviridae") |>
+    select(-Kingdom, -Subkingdom, -Phylum, -Subphylum,
+           -Class,   -Subclass,   -Order,  -Suborder,
+           -Family)
+
+with(gemini, table(Subfamily, useNA = "always"))
+with(gemini, table(Subgenus, useNA = "always"))
