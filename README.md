@@ -65,8 +65,6 @@ It also list an exemplar sequence
 for each species
 and in some cases one or more additional (A) sequence rows.
 ```{r, warning=FALSE}
-library(dplyr)
-
 vmr2022 <-
   read_excel("VMR_MSL38_v2.xlsx",
              sheet = 1, .name_repair = "universal")
