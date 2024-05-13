@@ -71,6 +71,20 @@ filter(vmr2022_e_slim,
 
 ######################################################################
 
+## Binomial renaming
+## https://ictv.global/files/proposals/approved
+## > Plant viruses > 2023
+## https://ictv.global/filebrowser/download/15374
+gemini_rename <-
+    read_excel("2023.015P.Geminiviridae_rename_sp.xlsx",
+               sheet = 2, skip = 3)
+## .name_repair not great, but good enough.
+gemini_new_old <- select(gemini_rename,
+                         old_sp_name = Species...15,
+                         new_sp_name = Species...30)
+
+######################################################################
+
 filter(vmr2022_e, Genus == "Umbravirus") |>
     select(Species, Virus.name.abbreviation.s.)
 ## Subfamily Calvusvirinae
