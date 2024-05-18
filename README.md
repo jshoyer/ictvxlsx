@@ -44,8 +44,8 @@ and put it in your current working directory.
 ```{r, warning=FALSE}
 library(readxl)
 
-msl2022 <-
-  read_excel("ICTV_Master_Species_List_2022_MSL38.v3.xlsx",
+msl <-
+  read_excel("ICTV_Master_Species_List_2023_MSL39.v1.xlsx",
              sheet = 2, .name_repair = "universal")
 ```
 
@@ -62,8 +62,8 @@ It also list an exemplar sequence
 for each species
 and in some cases one or more additional (A) sequence rows.
 ```{r, warning=FALSE}
-vmr2022 <-
-  read_excel("VMR_MSL38_v2.xlsx",
+vmr <-
+  read_excel("VMR_MSL39_v1.xlsx",
              sheet = 1, .name_repair = "universal")
 ```
 
@@ -84,16 +84,16 @@ and join tables like so:
 ```{r}
 library(dplyr)
 
-vmr2022_e <- filter(vmr2022,
-                    Exemplar.or.additional.isolate == "E") %>%
+vmr_e <- filter(vmr,
+                Exemplar.or.additional.isolate == "E") %>%
   select(-Exemplar.or.additional.isolate)
 
-msl2022_e <- left_join(msl2022, vmr2022_e,
-                       by = c("Realm", "Subrealm", "Kingdom", "Subkingdom",
-                              "Phylum", "Subphylum", "Class", "Subclass",
-                              "Order", "Suborder", "Family", "Subfamily",
-                              "Genus", "Subgenus", "Species",
-                              "Genome.Composition" = "Genome.composition"))
+msl_e <- left_join(msl, vmr_e,
+                   by = c("Realm", "Subrealm", "Kingdom", "Subkingdom",
+                          "Phylum", "Subphylum", "Class", "Subclass",
+                          "Order", "Suborder", "Family", "Subfamily",
+                          "Genus", "Subgenus", "Species",
+                          "Genome.Composition" = "Genome.composition"))
 ```
 
 It is often convenient
@@ -130,6 +130,9 @@ it can be worthwhile
 to wrap it in a package,
 storing either the Excel files themselves
 or R objects derived from them.
+A package might be especially useful
+if one is comparing multiple versions of the tables,
+which necessitates more specific/verbose variable names.
 I am exploring this idea
 on branches in this repository.
 Feel free to file an issue
