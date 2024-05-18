@@ -14,16 +14,16 @@ msl2023 <-
              col_types = "text",
              sheet = 2, .name_repair = "universal")
 
-vmr2022 <-
-  read_excel("VMR_MSL38_v3.xlsx",
+vmr2023 <-
+  read_excel("VMR_MSL39_v1.xlsx",
              col_types = "text",
              sheet = 1, .name_repair = "universal")
 
-vmr2022_e <- filter(vmr2022,
+vmr_e <- filter(vmr2023,
                     Exemplar.or.additional.isolate == "E") |>
   select(-Exemplar.or.additional.isolate)
 
-vmr2022_e_slim <- transmute(vmr2022_e,
+vmr_e_slim <- transmute(vmr_e,
                             Family, Genus, Species,
                             name = Virus.name.s.,
                             abbrev = Virus.name.abbreviation.s.,
@@ -32,26 +32,26 @@ vmr2022_e_slim <- transmute(vmr2022_e,
                             refseq = Virus.REFSEQ.accession)
 ## Genome.coverage, Genome.composition, Host.source
 
-vmr2022_e_slim2 <- select(vmr2022_e_slim,
+vmr_e_slim2 <- select(vmr_e_slim,
                           -Family, -Genus)
 
-msl2022_e <- left_join(msl2022, vmr2022_e_slim2,
+msl2023_e <- left_join(msl2023, vmr_e_slim2,
                        by = "Species")
 
 ## Top down: ######################################################################
-monodna <- filter(msl2023, Realm == "Monodnaviria") |>
+monodna <- filter(msl2023_e, Realm == "Monodnaviria") |>
     select(-Realm, -Subrealm)
 
 as.data.frame(with(monodna, table(abbrev))) |>
     filter(Freq > 1) |>
-    left_join(vmr2022_e_slim) |>
+    left_join(vmr_e_slim) |>
     select(abbrev, name, Species, Genus)
 
 ## Bottom up: ######################################################################
-filter(vmr2022_e_slim2, abbrev == "AYVV") ## not quite, because
+filter(vmr_e_slim2, abbrev == "AYVV") ## not quite, because
 
 ## many abbreviations have an extra identifier tacked on
-filter(vmr2022_e_slim,
+filter(vmr_e_slim,
        Genus == "Begomovirus",
        ##Family == "Geminiviridae",
        grepl("/", abbrev)) |>
