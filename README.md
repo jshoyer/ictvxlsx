@@ -75,6 +75,34 @@ vmr_e <- filter(vmr,
   select(-Exemplar.or.additional.isolate)
 ```
 
+Accession numbers
+for each segment
+for multipartite viruses
+can be split with regular expressions.
+For example:
+```{r}
+library(stringr)
+
+b_refseq_regex <- "DNA-B: NC_\\d+"
+a_refseq_regex <- "DNA-A: NC_\\d+"
+b_regex <- "DNA-B: [A-Z]+\\d+"
+a_regex <- "DNA-A: [A-Z]+\\d+"
+
+begomo <- filter(vmr, Genus == "Begomovirus") |>
+    mutate(b_genbank = str_extract(Virus.GENBANK.accession, b_regex) |>
+               substr(8, 999),
+           genbank = str_extract(Virus.GENBANK.accession, a_regex) |>
+               substr(8, 999),
+           b_refseq = str_extract(Virus.REFSEQ.accession,
+                                  b_refseq_regex) |>
+               substr(8, 999),
+           refseq = str_extract(Virus.REFSEQ.accession,
+                                a_refseq_regex) |>
+               substr(8, 999),
+	   .keep = "unused")
+```
+
+
 Much higher-rank information
 is duplicated
 in the MSL and VMR,
