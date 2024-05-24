@@ -61,10 +61,18 @@ It also list an exemplar sequence
 (GenBank accession numbers)
 for each species
 and in some cases one or more additional (A) sequence rows.
+It can be useful
+to get just the exemplar rows.
 ```{r, warning=FALSE}
+library(dplyr)
+
 vmr <-
   read_excel("VMR_MSL39_v1.xlsx",
              sheet = 1, .name_repair = "universal")
+
+vmr_e <- filter(vmr,
+                Exemplar.or.additional.isolate == "E") %>%
+  select(-Exemplar.or.additional.isolate)
 ```
 
 Much higher-rank information
@@ -79,15 +87,8 @@ in the MSL,
 you might find it simpler
 to just use VMR alone.)
 
-Get the exemplar rows
-and join tables like so:
+Join tables like so:
 ```{r}
-library(dplyr)
-
-vmr_e <- filter(vmr,
-                Exemplar.or.additional.isolate == "E") %>%
-  select(-Exemplar.or.additional.isolate)
-
 msl_e <- left_join(msl, vmr_e,
                    by = c("Realm", "Subrealm", "Kingdom", "Subkingdom",
                           "Phylum", "Subphylum", "Class", "Subclass",
