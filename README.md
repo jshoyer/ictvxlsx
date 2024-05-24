@@ -71,7 +71,7 @@ vmr <-
              sheet = 1, .name_repair = "universal")
 
 vmr_e <- filter(vmr,
-                Exemplar.or.additional.isolate == "E") %>%
+                Exemplar.or.additional.isolate == "E") |>
   select(-Exemplar.or.additional.isolate)
 ```
 
