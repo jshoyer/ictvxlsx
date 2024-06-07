@@ -18,6 +18,7 @@ to get a 1-per-year set.
 
 ```{r, warning=FALSE}
 library(readxl)
+library(dplyr)
 
 years <- 
   substring(dir("inst/extdata", pattern = "xls"),
