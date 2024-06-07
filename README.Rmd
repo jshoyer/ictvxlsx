@@ -60,7 +60,7 @@ for (i in 1:num_msl) {
                              Genus == "Begomovirus")
   num_begomo_spp[i] <- nrow(begomo_list[[i]])
   sweepo_list[[i]] <- filter(ictv_msl_list[[i]],
-                             grepl("Sweet potato", Species),
+                             grepl("Sweet potato|Ipomoea", Species),
                              Genus == "Begomovirus")
   num_sweepo_spp[i] <- nrow(sweepo_list[[i]])
 }
